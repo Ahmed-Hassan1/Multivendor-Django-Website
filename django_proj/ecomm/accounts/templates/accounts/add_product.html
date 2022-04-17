@@ -1,0 +1,21 @@
+{% extends 'store/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<h1>Add Product</h1>
+<h3>{{user.vendor}}</h3>
+
+{% if user.vendor.is_activated %}
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Submit" />
+</form>
+
+
+{% endif %}
+
+<p>Please wait for activiation</p>
+{% endblock content %}

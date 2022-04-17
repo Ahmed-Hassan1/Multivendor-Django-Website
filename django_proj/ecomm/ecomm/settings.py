@@ -45,6 +45,7 @@ INSTALLED_APPS = [
 
     #new apps
     'store',
+    'accounts',
 ]
 
 MIDDLEWARE = [
@@ -70,6 +71,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'store.context_processors.store_menu',
+                'store.context_processors.cart_badge',
             ],
         },
     },
@@ -132,8 +135,14 @@ STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+AUTH_USER_MODEL = 'accounts.CustomUser'
+
 STATICFILES_DIRS = [ os.path.join(BASE_DIR,'static')]
 
 MEDIA_URL = '/images/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
+
+
+#Email
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
