@@ -42,6 +42,7 @@ INSTALLED_APPS = [
 
     #3rd part
     'smart_selects',
+    'django_cleanup.apps.CleanupConfig',
 
     #new apps
     'store',
