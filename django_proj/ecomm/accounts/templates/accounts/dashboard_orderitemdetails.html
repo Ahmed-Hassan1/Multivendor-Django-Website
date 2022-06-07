@@ -6,63 +6,88 @@
 <h1>Order Details</h1>
 <h3>{{user.vendor}}</h3>
 <div>
-    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-            <a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a>
+    {% with request.resolver_match.url_name as url_name %}
+    <ul class="nav nav-pills justify-content-center mb-5">
+        <li class="nav-item ">
+            <a class="nav-link {% if url_name == 'dashboard' %}active{% endif %}" href="{% url 'dashboard' %}">Dashboard</a>
         </li>
     
         <li class="nav-item">
-            <a class="nav-link" href="{% url 'dashboard-orders' %}">Orders</a>
+            <a class="nav-link {% if url_name == 'dashboard-orders' %}active{% endif %}" href="{% url 'dashboard-orders' %}">Orders</a>
         </li>
     
         <li class="nav-item">
-            <a class="nav-link" href="{% url 'dashboard-products' %}">Products</a>
+            <a class="nav-link {% if url_name == 'dashboard-products' %}active{% endif %}" href="{% url 'dashboard-products' %}">Products</a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link {% if url_name == 'dashboard-finances' %}active{% endif %}" href="{% url 'dashboard-finances' %}">Finances</a>
         </li>
         
     </ul>
+    {% endwith %}
 </div>
 
 {% if user.vendor.is_activated %}
 <br>
-<div class="d-flex flex-column">
-    <div>
-        ID: {{orderitem.id}}
-    </div>
 
-    <div>
-        OrderID: {{orderitem.order.id}}
-    </div>
-
-    <div>
-        Customer: {{orderitem.order.customer}}
-    </div>
-
-    <div>
-        Date: {{orderitem.order.date}}
-    </div>
-
-    <div>
-        Product: {{orderitem.product}}
-    </div>
-
-    <div>
-        Status: {{orderitem.status}}
-    </div>
+<div class="d-flex">
+    <div class="d-flex flex-column">
+        <div>
+            ID: {{orderitem.id}}
+        </div>
     
-    <br>
-    <div>
-        EDIT STATUS
-        <form action="" method="post">
-            {% csrf_token %}
-            {{form}}
-            <input type="submit" value="Submit" />
-        </form>
+        <div>
+            OrderID: {{orderitem.order.id}}
+        </div>
+    
+        <div>
+            Date: {{orderitem.order.date}}
+        </div>
+    
+        <div>
+            Product: {{orderitem.product}}
+        </div>
+    
+        <div>
+            Status: {{orderitem.status}}
+        </div>
         
+        <br>
+        <div>
+            EDIT STATUS
+            <form action="" method="post">
+                {% csrf_token %}
+                {{form}}
+                <input type="submit" value="Submit" />
+            </form>
+            
+        </div>
     </div>
-    
-    
-    
+
+    <div>
+        <div>
+            Name: {{shipping.name}}
+        </div>
+
+        <div>
+            Telephone: {{shipping.telephone}}
+        </div>
+
+        <div>
+            Address: {{shipping.address}}
+        </div>
+
+        <div>
+            City: {{shipping.city}}
+        </div>
+
+        <div>
+            State: {{shipping.state}}
+        </div>
+    </div>
 </div>
+
 
 
 

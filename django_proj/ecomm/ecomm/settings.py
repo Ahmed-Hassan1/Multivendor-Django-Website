@@ -42,6 +42,7 @@ INSTALLED_APPS = [
 
     #3rd part
     'smart_selects',
+    'django_cleanup.apps.CleanupConfig',
 
     #new apps
     'store',
@@ -146,3 +147,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
 
 #Email
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+#Auth
+AUTHENTICATION_BACKENDS = (
+    'accounts.phoneOrEmailAuth.phoneOrEmail',
+    'django.contrib.auth.backends.ModelBackend',
+    )

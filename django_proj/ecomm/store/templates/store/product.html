@@ -2,37 +2,57 @@
 {% load static %}
 
 {% block content %}
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+    <li class="breadcrumb-item" ><a href="{% url 'instruments' subs.name %}">{{subs}}</a></li>
+    <li class="breadcrumb-item"><a href="{% url 'subCategory' subCat.name %}">{{subCat}}</a></li>
+    <li class="breadcrumb-item active" aria-current="page">{{product.name}}</li>
+  </ol>
+</nav>
+
+
 <div class="d-flex of scroll">
+    {% if product.imageURL != '' %}
     <div class="p-2">
       <a href="#">
-        <img class="image-top-view rounded" src="https://via.placeholder.com/500x500" alt="">
+        <img class="image-top-view rounded" src="{{product.imageURL}}" alt="">
       </a>
     </div>
+    {% endif %}
 
+    {% if product.image2URL != '' %}
     <div class="p-2">
-        <a href="#">
-          <img class="image-top-view rounded" src="https://via.placeholder.com/500x500" alt="">
-        </a>
-      </div>
+      <a href="#">
+        <img class="image-top-view rounded" src="{{product.image2URL}}" alt="">
+      </a>
+    </div>
+    {% endif %}
 
-      <div class="p-2">
-        <a href="#">
-          <img class="image-top-view rounded" src="https://via.placeholder.com/500x500" alt="">
-        </a>
-      </div>
-
-      <div class="p-2">
-        <a href="#">
-          <img class="image-top-view rounded" src="https://via.placeholder.com/500x500" alt="">
-        </a>
-      </div>
-
-      <div class="p-2">
-        <a href="#">
-          <img class="image-top-view rounded" src="https://via.placeholder.com/500x500" alt="">
-        </a>
-      </div>
+    {% if product.image3URL != '' %}
+    <div class="p-2">
+      <a href="#">
+        <img class="image-top-view rounded" src="{{product.image3URL}}" alt="">
+      </a>
+    </div>
+    {% endif %}
     
+    {% if product.image4URL != '' %}
+    <div class="p-2">
+      <a href="#">
+        <img class="image-top-view rounded" src="{{product.image4URL}}" alt="">
+      </a>
+    </div>
+    {% endif %}
+
+    {% if product.image5URL != '' %}
+    <div class="p-2">
+      <a href="#">
+        <img class="image-top-view rounded" src="{{product.image5URL}}" alt="">
+      </a>
+    </div>
+    {% endif %}
 </div>
 
 <br>
@@ -42,6 +62,26 @@
     <br>
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta velit sit, provident saepe, reprehenderit rerum, culpa corrupti temporibus dolore placeat adipisci blanditiis similique. Non laborum, quod nihil distinctio id magnam.</p>
     <br>
+
+    <div class="container mt-5">
+      <div class="row">
+         <div class="col-sm-4"></div>
+         <div class="col-sm-4 col-sm-offset-4">
+             <div class="input-group mb-3">
+                 <div class="input-group-prepend">
+                     <button class="btn btn-dark btn-sm" id="minus-btn"><i class="fa fa-minus"></i></button>
+                 </div>
+                 <input type="number" id="qty_input" class="form-control form-control-sm text-center" value="1" min="1">
+                 <div class="input-group-prepend">
+                     <button class="btn btn-dark btn-sm" id="plus-btn"><i class="fa fa-plus"></i></button>
+                 </div>
+             </div>
+         </div>
+         <div class="col-sm-4"></div>
+     </div>
+    </div>
+
+
     <button data-product="{{product.id}}" data-action="add" class="btn btn-secondary update-cart" style="width: 100%;">Add to Cart</button>
 </div>
 

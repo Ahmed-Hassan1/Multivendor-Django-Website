@@ -4,119 +4,32 @@
 {% block content %}
 
 <div>
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+      <li class="breadcrumb-item" ><a href="{% url 'instruments' subs.name %}">{{subs}}</a></li>
+      <li class="breadcrumb-item active" aria-current="page">{{subCat}}</li>
+    </ol>
+  </nav>
         
-    <img src="https://via.placeholder.com/730x300" alt="" class="img-fluid shadow mb-4 bg-body rounded">
+    <img src="{{subCat.imageURL_banner}}" alt="" class="img-fluid shadow mb-4 bg-body rounded">
 
-  <!-- Single section Carousel -->
-  <!-- <div class="shadow mb-4 bg-body rounded scroll"> -->
-    <!-- header -->
-    <!-- <div>
-      <div class="d-flex justify-content-between align-items-center" style="background-color: #dce0e7;">
-        <h2 class="text-center">Top picks</h2>
-        <a class="p-2" href="#">SEE ALL</a>
-      </div>
-    </div> -->
-
-    <!-- items -->
-    <!-- <div class="d-flex of">
-
-      <div class="p-2 itm">
-        <a class="d-flex flex-column" href="#">
-          <img class="img-fluid" src="https://via.placeholder.com/300x300" alt="">
-          <h3>Name</h3>
-          <div>Price</div>
-        </a>
-      </div>
-
-      <div class="p-2 itm">
-        <a class="d-flex flex-column" href="#">
-          <img class="img-fluid" src="https://via.placeholder.com/300x300" alt="">
-          <h3 class="text-center">Name</h3>
-          <div>Price</div>
-        </a>
-      </div>
-
-      <div class="p-2 itm">
-        <a class="d-flex flex-column" href="#">
-          <img class="img-fluid" src="https://via.placeholder.com/300x300" alt="">
-          <h3>Name</h3>
-          <div>Price</div>
-        </a>
-      </div>
-
-      <div class="p-2 itm">
-        <a class="d-flex flex-column" href="#">
-          <img class="img-fluid" src="https://via.placeholder.com/300x300" alt="">
-          <h3>Name</h3>
-          <div>Price</div>
-        </a>
-      </div>
-
-      <div class="p-2 itm">
-        <a class="d-flex flex-column" href="#">
-          <img class="img-fluid" src="https://via.placeholder.com/300x300" alt="">
-          <h3>Name</h3>
-          <div>Price</div>
-        </a>
-      </div>
-
-      <div class="p-2 itm">
-        <a class="d-flex flex-column" href="#">
-          <img class="img-fluid" src="https://via.placeholder.com/300x300" alt="">
-          <h3>Name</h3>
-          <div>Price</div>
-        </a>
-      </div>
-
-      <div class="p-2 itm">
-        <a class="d-flex flex-column" href="#">
-          <img class="img-fluid" src="https://via.placeholder.com/300x300" alt="">
-          <h3>Name</h3>
-          <div>Price</div>
-        </a>
-      </div>
-
-      <div class="p-2 itm">
-        <a class="d-flex flex-column" href="#">
-          <img class="img-fluid" src="https://via.placeholder.com/300x300" alt="">
-          <h3>Name</h3>
-          <div>Price</div>
-        </a>
-      </div>
-
-      <div class="p-2 itm">
-        <a class="d-flex flex-column" href="#">
-          <img class="img-fluid" src="https://via.placeholder.com/300x300" alt="">
-          <h3>Name</h3>
-          <div>Price</div>
-        </a>
-      </div>
-    </div>
-  </div> -->
 
     <div class="container mb-4">
-        <section>
-            <div class="d-flex flex-column align-items-center">
-                <!-- <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                      <li class="breadcrumb-item "><a href="#" style="color: black;">Home</a></li>
-                      <li class="breadcrumb-item active" aria-current="page">Library</li>
-                    </ol>
-                  </nav> -->
-    
-                  <div class="mb-5 mt-5 d-flex flex-column align-items-center">
-                    <div>
-                      <select id="inst" class="btn btn-outline-secondary">
-                        <option selected>Default sorting</option>
-                        <option>New Additions</option>
-                        <option>Price Highest to Lowest</option>
-                        <option>Price Lowest to Highest</option>
-                      </select>
-                    </div>
-          
-                  </div>
-            </div>
-        </section>
+      <section>
+        <div class="mb-5 mt-3 d-flex flex-column align-items-center">
+          <div>
+            <form name="myform" id ="myform" method="get">
+              <select name="filter_by" onchange="submitform();" class="btn btn-outline-secondary">
+                  <option selected>{{sorting}}</option>
+                  <option value="new">New Additions</option>
+                  <option value="HighToLow">Price Highest to Lowest</option>
+                  <option value="LowToHigh">Price Lowest to Highest</option>
+              </select>
+            </form>
+          </div>
+        </div>
+    </section>
 
         <div class="row">
             {% for product in products %}

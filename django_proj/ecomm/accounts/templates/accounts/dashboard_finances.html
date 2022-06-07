@@ -1,0 +1,72 @@
+{% extends 'store/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div>
+    <h1 class="text-center">Finances</h1>
+    <h3 class="text-center">{{user.vendor}}</h3>
+</div>
+
+
+{% if user.vendor.is_activated %}
+
+<div>
+    {% with request.resolver_match.url_name as url_name %}
+    <ul class="nav nav-pills justify-content-center mb-5">
+        <li class="nav-item ">
+            <a class="nav-link {% if url_name == 'dashboard' %}active{% endif %}" href="{% url 'dashboard' %}">Dashboard</a>
+        </li>
+    
+        <li class="nav-item">
+            <a class="nav-link {% if url_name == 'dashboard-orders' %}active{% endif %}" href="{% url 'dashboard-orders' %}">Orders</a>
+        </li>
+    
+        <li class="nav-item">
+            <a class="nav-link {% if url_name == 'dashboard-products' %}active{% endif %}" href="{% url 'dashboard-products' %}">Products</a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link {% if url_name == 'dashboard-finances' %}active{% endif %}" href="{% url 'dashboard-finances' %}">Finances</a>
+        </li>
+        
+    </ul>
+    {% endwith %}
+</div>
+
+<h3>Finances Details</h3>
+<ul class="list-group mb-5" style="max-width: 400px;">
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+        Sales of orders still processing
+        <span class="badge bg-primary rounded-pill">{{processingSales}}</span>
+    </li>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+        Sales of orders on delivery
+        <span class="badge bg-primary rounded-pill">{{shippingSales}}</span>
+    </li>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+        Sales of orders delievered
+        <span class="badge bg-primary rounded-pill">{{deliveredSales}}</span>
+    </li>
+</ul>
+
+<h3>Payment Details</h3>
+<ul class="list-group" style="max-width: 400px;">
+
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+        Money In Account
+        <span class="badge bg-primary rounded-pill">{{moneyInAccount}}</span>
+    </li>
+
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+        Total Payments
+        <span class="badge bg-primary rounded-pill">{{totalPayments}}</span>
+    </li>
+    
+</ul>
+
+{% else %}
+    <p>Please wait for activiation</p>
+{% endif %}
+
+{% endblock content %}
