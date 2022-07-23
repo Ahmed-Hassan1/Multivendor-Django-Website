@@ -7,9 +7,13 @@
     <a href="{% url 'customer-profile' %}">
         <i class="bi bi-arrow-left ps-2"></i>
     </a> 
-    <div class="ps-5">Account Details</div>
+    <div class="ps-5">تفاصيل الحساب</div>
     
 </div>
+<div class="mb-5 btn btn-outline-primary">
+    <a  href="{% url 'password_change' %}">Change Password</a>
+</div>
+
 {{ form.errors }}
 <form action="" method="post" enctype="multipart/form-data">
     {% csrf_token %}
@@ -18,5 +22,6 @@
 
     <input type="submit" name="Edit" class="width-100pc btn btn-outline-primary">
 </form>
+
 
 {% endblock content %}

@@ -29,6 +29,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+#if DEBUG:
+    #EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # Application definition
 
@@ -64,7 +66,7 @@ ROOT_URLCONF = 'ecomm.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [str(BASE_DIR.joinpath('templates'))],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -146,7 +148,13 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
 
 
 #Email
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+DEFAULT_FROM_EMAIL = 'monwork16@gmail.com'
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_HOST_USER = 'apikey'
+EMAIL_HOST_PASSWORD = config('SENDGRID_KEY')
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
 
 #Auth
 AUTHENTICATION_BACKENDS = (
